@@ -1,0 +1,12 @@
+name: ReleaseCI
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Rlease to S3
+        run: bash scripts/pipeline/release.sh "dariusz-codedeploy" "folder1/files.zip" ${{ secrets.AWS_ACCESS_KEY }} ${{ secrets.AWS_ACCESS_SECRET }} "files.zip"
